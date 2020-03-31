@@ -12,23 +12,35 @@ function outputResult(result, text) {
   currentCalculationOutput.textContent = text;
 }
 
+//Global variables
 const defaultResult = 0;
 let currentResult = defaultResult;
+let logEntries = [];
 
+//This comes from input field
 function getUserNumberInput() {
   return parseInt(userInput.value);
 }
+
+//generates and writes calculating log
 function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
   const calcDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`;
-  outputResult(currentResult, calcDescription);
+  outputResult(currentResult, calcDescription); //from vendor file
 }
 
 function add() {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
-
-  currentResult = currentResult + enteredNumber;
+  // currentResult = currentResult + enteredNumber
+  currentResult += enteredNumber;
   createAndWriteOutput("+", initialResult, enteredNumber);
+  const logEntry = {
+    operation: "ADD",
+    prevResult: initialResult,
+    number: enteredNumber,
+    result: currentResul
+  };
+  logEntries.push(logEntry);
 }
 
 function subtract() {
@@ -40,12 +52,14 @@ function subtract() {
 function multiply() {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
-  currentResult = currentResult * enteredNumber;
+  // currentResult = currentResult * enteredNumber;
+  currentResult *= enteredNumber;
   createAndWriteOutput("*", initialResult, enteredNumber);
 }
 function devide() {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
+
   currentResult = currentResult / enteredNumber;
   createAndWriteOutput("/", initialResult, enteredNumber);
 }
@@ -53,4 +67,4 @@ function devide() {
 addBtn.addEventListener("click", add);
 subtractBtn.addEventListener("click", subtract);
 multiplyBtn.addEventListener("click", multiply);
-devideBtn.addEventListener("click", devide);
+divideBtn.addEventListener("click", devide);
