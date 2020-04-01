@@ -28,19 +28,28 @@ function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
   outputResult(currentResult, calcDescription); //from vendor file
 }
 
+function writeToLog(
+  operationIdentifier,
+  prevResult,
+  operationNumber,
+  newResult
+) {
+  const logEntry = {
+    operation: operationIdentifier,
+    prevResult: prevResult,
+    number: operationNumber,
+    result: newResult
+  };
+  logEntries.push(logEntry);
+}
+
 function add() {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
   // currentResult = currentResult + enteredNumber
   currentResult += enteredNumber;
   createAndWriteOutput("+", initialResult, enteredNumber);
-  const logEntry = {
-    operation: "ADD",
-    prevResult: initialResult,
-    number: enteredNumber,
-    result: currentResul
-  };
-  logEntries.push(logEntry);
+  writeToLog("ADD", initialResult, enteredNumber, currentResult);
 }
 
 function subtract() {
@@ -48,6 +57,7 @@ function subtract() {
   const initialResult = currentResult;
   currentResult = currentResult - enteredNumber;
   createAndWriteOutput("-", initialResult, enteredNumber);
+  writeToLog("SUBTRACT", initialResult, enteredNumber, currentResult);
 }
 function multiply() {
   const enteredNumber = getUserNumberInput();
@@ -55,6 +65,7 @@ function multiply() {
   // currentResult = currentResult * enteredNumber;
   currentResult *= enteredNumber;
   createAndWriteOutput("*", initialResult, enteredNumber);
+  writeToLog("MULTIPLY", initialResult, enteredNumber, currentResult);
 }
 function devide() {
   const enteredNumber = getUserNumberInput();
@@ -62,6 +73,7 @@ function devide() {
 
   currentResult = currentResult / enteredNumber;
   createAndWriteOutput("/", initialResult, enteredNumber);
+  writeToLog("DEVIDE", initialResult, enteredNumber, currentResult);
 }
 
 addBtn.addEventListener("click", add);
