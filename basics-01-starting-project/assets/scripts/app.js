@@ -74,20 +74,16 @@ function subtract() {
 }
 
 function multiply() {
-  const enteredNumber = getUserNumberInput();
-  const initialResult = currentResult;
-  // currentResult = currentResult * enteredNumber;
-  currentResult *= enteredNumber;
-  createAndWriteOutput("*", initialResult, enteredNumber);
-  writeToLog("MULTIPLY", initialResult, enteredNumber, currentResult);
+  calculateResult("MULTIPLY");
 }
 function devide() {
-  const enteredNumber = getUserNumberInput();
-  const initialResult = currentResult;
+  calculateResult("DEVIDE");
+  // const enteredNumber = getUserNumberInput();
+  // const initialResult = currentResult;
 
-  currentResult = currentResult / enteredNumber;
-  createAndWriteOutput("/", initialResult, enteredNumber);
-  writeToLog("DEVIDE", initialResult, enteredNumber, currentResult);
+  // currentResult = currentResult / enteredNumber;
+  // createAndWriteOutput("/", initialResult, enteredNumber);
+  // writeToLog("DEVIDE", initialResult, enteredNumber, currentResult);
 }
 
 addBtn.addEventListener("click", add);
