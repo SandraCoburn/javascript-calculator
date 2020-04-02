@@ -2,9 +2,12 @@ const ATTACK_VALUE = 10;
 const MONSTER_ATTACK_VALUE = 14;
 const STRONG_ATTACK_VALUE = 17;
 const HEAL_VALUE = 20;
+const MODE_ATTACK = "ATTACK";
+const MODE_STRONG_ATTACK = "STRONG_ATTACK";
 
 const enteredValue = prompt("Maximun life for you and the monster", "100");
 let chosenMaxLife = parseInt(enteredValue);
+let battleLog = [];
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 
@@ -84,6 +87,37 @@ function healPlayerHandler() {
   increasePlayerHealth(HEAL_VALUE);
   currentPlayerHealth += HEAL_VALUE;
   endRound();
+}
+function writeToLog(event, value, monsterHealth, playerHealth) {
+  let logEntry;
+  if (event === LOG_EVENT_PLAYER_ATTACK) {
+    logEntry = {
+      event: event,
+      value: value,
+      target: "MONSTER",
+      finalMonsterHealth: monsterHealth,
+      finalPlayerHealth: playerHealth
+    };
+    battleLog.push(logEntry);
+  } else if (event === LOG_EVENT_PLAYER_STRONG_ATTACK) {
+    logEntry = {
+      event: event,
+      value: value,
+      target: "MONSTER",
+      finalMonsterHealth: monsterHealth,
+      finalPlayerHealth: playerHealth
+    };
+    battleLog.push(logEntry);
+  } else if (event === LOG_EVENT_PLAYER_HEAL) {
+    logEntry = {
+      event: event,
+      value: value,
+      target: "PLAYER",
+      finalMonsterHealth: monsterHealth,
+      finalPlayerHealth: playerHealth
+    };
+    battleLog.push(logEntry);
+  }
 }
 
 attackBtn.addEventListener("click", attackHandler);
