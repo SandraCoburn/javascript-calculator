@@ -29,16 +29,24 @@ function attackHandler() {
   //     alert("you lost!");
   //   }
 }
+const userName = isLogin ? "mas" : null;
 
 function attackMonster(mode) {
-  let maxDamage;
-  if (mode === "ATTACK") {
-    maxDamage = ATTACK_VALUE;
-  } else {
-    maxDamage = STRONG_ATTACK_VALUE;
-  }
+  let maxDamage = mode === "ATTACK" ? ATTACK_VALUE : STRONG_ATTACK_VALUE;
+  let logEvent =
+    mode === "ATTACK"
+      ? LOG_EVENT_PLAYER_ATTACK
+      : LOG_EVENT_PLAYER_STRONG_ATTACK;
+  //   if (mode === "ATTACK") {
+  //     maxDamage = ATTACK_VALUE;
+  //      logEvent = LOG_EVENT_PLAYER_ATTACK
+  //   } else {
+  //     maxDamage = STRONG_ATTACK_VALUE;
+  //      logEvent = LOG_EVENT_PLAYER_STRONG_ATTACK
+  //   }
   const damage = dealMonsterDamage(maxDamage);
   currentMonsterHealth -= damage;
+  writeToLog(logEvent, damage, currentMonsterHealth, currentPlayerHealth);
   endRound();
   //   const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
   //   currentPlayerHealth -= playerDamage;
