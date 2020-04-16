@@ -32,7 +32,7 @@ const getComputerChoice = function () {
     return SCISSORS;
   }
 };
-const getWinner = function (cChoice, pChoice) {
+const getWinner = function (cChoice, pChoice = DEFAULT_USER_CHOICE) {
   if (cChoice === pChoice) {
     return RESULT_DRAW;
   } else if (
@@ -58,4 +58,18 @@ startGameBtn.addEventListener("click", function () {
   const computerChoice = getComputerChoice();
   const winner = getWinner(computerChoice, playerSelection);
   console.log(winner);
+  let winner;
+  if (playerSelection) {
+    winner = getWinner(computerChoice, playerSelection);
+  }
+  let message;
+  if (winner === RESULT_DRAW) {
+    message = `You picked ${playerSelection}, computer picked ${computerChoice}`;
+  } else if (winner === RESULT_PLAYER_WINS) {
+    message = message + "won.";
+  } else {
+    message = message + "lost.";
+  }
+  alert(message);
+  gameIsRunning = false;
 });
