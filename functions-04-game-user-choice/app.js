@@ -73,3 +73,24 @@ startGameBtn.addEventListener("click", function () {
   alert(message);
   gameIsRunning = false;
 });
+
+// not related to the game
+const sumUp = (a, b, ...numbers) => {
+  let sum = 0;
+  for (const num of numbers) {
+    sum += num;
+  }
+  return sum;
+};
+
+// when you use the function that it's not arrow function you get an argument that acts like an array
+const subtractUp = function () {
+  let sum = 0;
+  for (const num of arguments) {
+    //it will have all arguments passed turned into an array like
+    sum -= num;
+  }
+  return sum;
+};
+console.log(sumUp(1, 2, 10, -3, 10));
+console.log(subtractUp(2, 3, -6, 49));
