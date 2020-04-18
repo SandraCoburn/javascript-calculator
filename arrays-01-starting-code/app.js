@@ -125,3 +125,13 @@ const filteredArray = prices.filter((price, index, prices) => {
   return prices > 6;
 });
 console.log(filteredArray);
+
+//reduce() method will take in up to 4 arguments: previous value, current value, index, whole array and another argument at the end which is the initial value
+// const sum = 0;
+// prices.forEach(price => {
+//     sum += price
+// })
+const sum = prices.reduce((prevValue, curValue, curIndex, prices) => {
+  return prevValue + curValue;
+}, 0);
+console.log(sum);
