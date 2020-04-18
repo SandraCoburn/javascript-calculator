@@ -75,3 +75,25 @@ const sean = personData.find((person, index, persons) => {
 }); //find() takes a function as an argument. that function accepts 3 arguments: an objec, index of the element and the whole array. It will return a boolen true or false
 sean.name = "Jackie";
 console.log(sean, personData);
+
+//To find the index of an object in an array.
+const johnIndex = personData.findIndex((person, index, persons) => {
+  return person.name === "John";
+});
+console.log(johnIndex);
+
+// Includes method
+console.log(testResults.includes(10.99)); //it will return a boolean of true or false if the element is not found in the array
+
+//ForEach() method will take up to 3 arguments: element, index, arrayVariable for full array
+const prices = [10.99, 5.99, 3, 99, 6.59];
+const tax = 0.19;
+const taxAdjustedPrice = [];
+
+prices.forEach((price, inx, prices) => {
+  const priceObj = { index: inx, taxAdjustedPrice: price * (1 + tax) }; //you can create objects with index number
+  taxAdjustedPrice.push(priceObj);
+});
+//will give same result as:
+// for (const price of prices) [taxAdjustedPrice.push(price * (1 + tax))];
+console.log(taxAdjustedPrice);
