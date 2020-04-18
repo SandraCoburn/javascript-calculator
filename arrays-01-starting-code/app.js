@@ -97,3 +97,13 @@ prices.forEach((price, inx, prices) => {
 //will give same result as:
 // for (const price of prices) [taxAdjustedPrice.push(price * (1 + tax))];
 console.log(taxAdjustedPrice);
+
+//Map() will give a new array with the elements that meet the criteria, it has to have a return. It won't change the original array
+const prices = [10.99, 5.99, 3, 99, 6.59];
+const tax = 0.19;
+// const taxAdjustedPrice = [];
+
+const taxAdjustedPrices = prices.map((price, inx, prices) => {
+  const priceObj = { index: inx, taxAdjustedPrice: price * (1 + tax) }; //you can create objects with index number
+  return priceObj;
+});
