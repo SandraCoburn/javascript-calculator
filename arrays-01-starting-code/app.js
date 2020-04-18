@@ -119,3 +119,9 @@ const sortedPrices = prices.sort((a, b) => {
   }
 });
 console.log(sortedPrices.reverse()); // you can't pass any arguments, it will just reverse the sorted array
+
+//filter() method will return a brand new array without changing the origial array. It takes in 3 arguments, the element, index and full array. It returns boolean values
+const filteredArray = prices.filter((price, index, prices) => {
+  return prices > 6;
+});
+console.log(filteredArray);
