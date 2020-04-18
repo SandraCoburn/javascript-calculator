@@ -107,3 +107,15 @@ const taxAdjustedPrices = prices.map((price, inx, prices) => {
   const priceObj = { index: inx, taxAdjustedPrice: price * (1 + tax) }; //you can create objects with index number
   return priceObj;
 });
+
+//sort() method by default convert everything into a string. It takes to arguments: the two elements to be compared. If a is greater than b.
+const sortedPrices = prices.sort((a, b) => {
+  if (a > b) {
+    return 1;
+  } else if (a === b) {
+    return 0;
+  } else {
+    return -1;
+  }
+});
+console.log(sortedPrices.reverse()); // you can't pass any arguments, it will just reverse the sorted array
