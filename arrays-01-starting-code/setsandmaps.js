@@ -55,3 +55,15 @@ for (const [key, value] of personData.entries()) {
 for (const key of personData.keys()) {
   console.log(key);
 }
+
+//undrstanding WeakSet. Used when you need to reset for better garbage collect
+let person = { name: "jackie" };
+const persons = new WeakSet();
+persons.add(person);
+console.log(persons);
+
+//understanding WeakMap. will be used when you want to reset a value to be able to be garbage collected
+const personData1 = new Map();
+personData1.set(person, "extra infor here");
+person = null;
+console.log(personData1);
