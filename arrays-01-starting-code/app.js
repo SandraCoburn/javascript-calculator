@@ -86,7 +86,7 @@ console.log(hobbies);
 // console.log(testResults.includes(10.99)); //it will return a boolean of true or false if the element is not found in the array
 
 // //ForEach() method will take up to 3 arguments: element, index, arrayVariable for full array
-// const prices = [10.99, 5.99, 3, 99, 6.59];
+const prices = [10.99, 5.99, 3, 99, 6.59];
 // const tax = 0.19;
 // const taxAdjustedPrice = [];
 
@@ -152,3 +152,29 @@ console.log(trnsformedData);
 const nameFragments = ["max", "john"];
 const name = nameFragments.join("");
 console.log(name);
+
+//The spread operator(...) it will pull all the elements of an array and copy all the values of the original array
+const copiedNameFragments = [...nameFragments];
+
+nameFragments.push("Jackie");
+console.log(nameFragments, copiedNameFragments);
+
+//global Math object will return the smallest value. It doesn't take arrays only numbers. But you can use the spread operator to get the values from the array
+console.log(Math.min(2, 1, 10, 9));
+console.log(Math.min(...prices));
+
+const persons = [
+  { name: "john", age: 12 },
+  { name: "jackie", age: 16 },
+  { name: "sean", age: 17 },
+];
+const copiedPersons = [...persons];
+persons.push({ name: "jocy", age: 30 });
+persons[0].age = 31;
+console.log(persons, copiedPersons);
+
+//If we want to keep a copy of the original array and so if we make changes to original array our copy stays the same, we need to add a map function to get a new place in memory for the new array:
+const copiedPersonsArray = [
+  ...persons.map((person) => ({ name: person.name, age: person.age })),
+];
+console.log(copiedPersonsArray);
