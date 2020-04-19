@@ -173,8 +173,20 @@ persons.push({ name: "jocy", age: 30 });
 persons[0].age = 31;
 console.log(persons, copiedPersons);
 
-//If we want to keep a copy of the original array and so if we make changes to original array our copy stays the same, we need to add a map function to get a new place in memory for the new array:
+//If we want to keep a copy of the original array(clone) and so if we make changes to original array our copy stays the same, we need to add a map function to get a new place in memory for the new array:
 const copiedPersonsArray = [
   ...persons.map((person) => ({ name: person.name, age: person.age })),
 ];
+//or const copiedPersonsArray = persons.map(person => ({name:person.name, age: person.age}))
 console.log(copiedPersonsArray);
+
+//array destructoring is used when you want to access individual values
+const nameData = ["jocy", "giovanni", "sean", "jackie", "jryan"];
+const firstName = nameData[0]; // you can add the value to a varible or:
+
+// const [firstSibling, secondSibling] = nameData;
+// console.log(firstSibling, secondSibling);
+
+//if you want to get the first two elements and then the rest of the values, you use the spread operator
+const [one, two, ...allOthers] = nameData;
+console.log(one, two, allOthers);
