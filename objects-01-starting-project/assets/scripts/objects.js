@@ -1,11 +1,11 @@
 const addMovieBtn = document.getElementById("add-movie-btn");
-const searcBrn = document.getElementById("search-btn");
+const searchBtn = document.getElementById("search-btn");
 
 //Create an array to hold the movie title from form
 const movies = [];
 
 //to output the movies stored in the array
-const renderMovies = () => {
+const renderMovies = (filter = "") => {
   const movieList = document.getElementById("movie-list");
   movieList.innerHTML = "";
   if (movies.length === 0) {
@@ -15,8 +15,13 @@ const renderMovies = () => {
   }
   movieList.innerHTML = "";
 
+  //If the filt is falsy, empty then show all movies. If there is a string in filter, get all movies and filter by movie, then check if the movie info title includes what is in the filter value:
+  const filteredMovies = !filter
+    ? movies
+    : movies.filter((movie) => movie.info.title.includes(filter));
+
   //this will create a new list element li to store every new movie we input
-  movies.forEach((movie) => {
+  filteredMovies.forEach((movie) => {
     const movieEl = document.createElement("li");
     // movieEl.textContent = movie.info.title;
     let text = movie.info.title + " - ";
@@ -36,10 +41,11 @@ const addMovieHandler = () => {
   const extraName = document.getElementById("extra-name").value;
   const extraValue = document.getElementById("extra-value").value;
 
-  //add some validation to see if the values of the tile and other fields are empty are empty
+  //add some validation to see if the values of the tile and other fields are empty
   if (
     title.trim() === "" ||
-    (extraName.trim() === "") | (extraValue.trim() === "")
+    extraName.trim() === "" ||
+    extraValue.trim() === ""
   ) {
     return;
   }
@@ -50,27 +56,44 @@ const addMovieHandler = () => {
       title,
       [extraName]: extraValue, //extraName is a variable that will hold the extraValue value
     },
-    id: Math.random(),
+    id: Math.random().toString(),
   };
   movies.push(newMovie);
   console.log(newMovie);
   renderMovies();
 };
 
+const searchMovieHandler = () => {
+  const filterTerm = document.getElementById("filter-title").value;
+  renderMovies(filterTerm);
+};
+
 addMovieBtn.addEventListener("click", addMovieHandler);
+searchBtn.addEventListener("click", searchMovieHandler);
 
 // //use of brackets to dynamicaly add a property to an objec
 // const userChosenKeyName = "level"
 
-// let person = {
-//   name: "Sean",
-//   'last-name': "Coburn",
-//   age: 17,
-//   hobbies: ["piano", "drums"],
-//   greet: function () {
-//     alert("Hi there!");
-//   },
-// };
+let person = {
+  name: "Sean",
+  "last-name": "Coburn",
+  age: 17,
+  hobbies: ["piano", "drums"],
+  greet: function () {
+    alert("Hi there!");
+  },
+};
+
+let personSis = {
+  name: "Jackie",
+  "last-name": "Coburn",
+  age: 16,
+  hobbies: ["piano", "drama"],
+  greet: function () {
+    alert("Hi there!");
+  },
+};
+console.log(personSis);
 // person.greet();
 // // To add properties to the object. Using the dot notation either override an object or add it it it's not there
 // person.isAdmin = true;
@@ -86,3 +109,8 @@ addMovieBtn.addEventListener("click", addMovieHandler);
 // //bracket notation
 // console.log(person[keyName])
 // console.log(person['last name'])
+
+//Object.assign() will assign everything in object person to a new array. This can be done with an empty object or another array(it will override the other array)
+const person2 = Object.assign(personSis, person);
+console.log(person2);
+console.log(personSis);
