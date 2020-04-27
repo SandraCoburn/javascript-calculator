@@ -24,10 +24,17 @@ const renderMovies = (filter = "") => {
   filteredMovies.forEach((movie) => {
     const movieEl = document.createElement("li");
     // movieEl.textContent = movie.info.title;
-    let text = movie.info.title + " - ";
-    for (const key in movie.info) {
+
+    //Object destructuring. We can use the key info so we dont have to write movie.info on the following lines
+    const { info, ...otherProps } = movie; //otherProps has all the properties not passed by name
+    console.log("other props", otherProps);
+    // let text = movie.info.title + " - ";
+    let text = info.title + " - ";
+    // for (const key in movie.info) {
+    for (const key in info) {
       if (key !== "title") {
-        text = text + `${key}: ${movie.info[key]}`;
+        //  text = text + `${key}: ${movie.info[key]}`;
+        text = text + `${key}: ${info[key]}`;
       }
     }
 
@@ -74,26 +81,26 @@ searchBtn.addEventListener("click", searchMovieHandler);
 // //use of brackets to dynamicaly add a property to an objec
 // const userChosenKeyName = "level"
 
-let person = {
-  name: "Sean",
-  "last-name": "Coburn",
-  age: 17,
-  hobbies: ["piano", "drums"],
-  greet: function () {
-    alert("Hi there!");
-  },
-};
+// let person = {
+//   name: "Sean",
+//   "last-name": "Coburn",
+//   age: 17,
+//   hobbies: ["piano", "drums"],
+//   greet: function () {
+//     alert("Hi there!");
+//   },
+// };
 
-let personSis = {
-  name: "Jackie",
-  "last-name": "Coburn",
-  age: 16,
-  hobbies: ["piano", "drama"],
-  greet: function () {
-    alert("Hi there!");
-  },
-};
-console.log(personSis);
+// let personSis = {
+//   name: "Jackie",
+//   "last-name": "Coburn",
+//   age: 16,
+//   hobbies: ["piano", "drama"],
+//   greet: function () {
+//     alert("Hi there!");
+//   },
+// };
+// console.log(personSis);
 // person.greet();
 // // To add properties to the object. Using the dot notation either override an object or add it it it's not there
 // person.isAdmin = true;
@@ -111,6 +118,6 @@ console.log(personSis);
 // console.log(person['last name'])
 
 //Object.assign() will assign everything in object person to a new array. This can be done with an empty object or another array(it will override the other array)
-const person2 = Object.assign(personSis, person);
-console.log(person2);
-console.log(personSis);
+// const person2 = Object.assign(personSis, person);
+// console.log(person2);
+// console.log(personSis);
