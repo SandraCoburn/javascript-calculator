@@ -26,16 +26,17 @@ const renderMovies = (filter = "") => {
     // movieEl.textContent = movie.info.title;
 
     //Checking for property existence. if info is found in movie
-//     if(!("info" in movie)) {
-// //write code here
-//     }
+    //     if(!("info" in movie)) {
+    // //write code here
+    //     }
 
     //Object destructuring. We can use the key info so we dont have to write movie.info on the following lines
     const { info, ...otherProps } = movie; //otherProps has all the properties not passed by name
     console.log("other props", otherProps);
-    if(info)
-    // let text = movie.info.title + " - ";
-    let text = info.title.toUpperCase() + " - ";
+    // if(info)
+    // let text = movie.info.title + " - "; this is without destructuring
+    // let text = info.title.toUpperCase() + " - "; this is using info destructured and then adding uppercase method
+    let text = movie.getFormattedTitle() + " - "; //this calls a function to format title
     // for (const key in movie.info) {
     for (const key in info) {
       if (key !== "title") {
@@ -70,9 +71,9 @@ const addMovieHandler = () => {
       [extraName]: extraValue, //extraName is a variable that will hold the extraValue value
     },
     id: Math.random().toString(),
-    getFormattedTitle: function() {
-        return this.info.title.toLowerCase()//it will use this word to specify the object where the function was called
-    }
+    getFormattedTitle: function () {
+      return this.info.title.toUpperCase(); //it will use this word to specify the object where the function was called
+    },
   };
   movies.push(newMovie);
   console.log(newMovie);
